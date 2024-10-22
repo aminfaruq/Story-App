@@ -13,45 +13,34 @@ class AuthRepository private constructor(
     private val apiService: ApiService,
 ) {
 
-    // Fungsi untuk login
     fun login(email: String, password: String, context: Context): LiveData<Result<AuthResponse>> = liveData {
         val sharedPreferencesHelper = SharedPreferencesHelper(context)
-
-        emit(Result.Loading) // Emit loading state
+        emit(Result.Loading)
         try {
-            // Panggil API untuk login
             val response = apiService.doLogin(email, password)
-
             if (response.error) {
-                // Emit error jika respons API menunjukkan error
                 emit(Result.Error(response.message))
             } else {
-                // Simpan token ke SharedPreferences setelah login berhasil
                 sharedPreferencesHelper.saveToken(response.loginResult.token)
                 sharedPreferencesHelper.saveName(response.loginResult.name)
                 emit(Result.Success(response))
             }
         } catch (e: Exception) {
-            // Emit error jika terjadi exception
             emit(Result.Error(e.localizedMessage ?: "Error occurred during login"))
         }
     }
 
-    // Fungsi untuk register
     fun register(name: String, email: String, password: String): LiveData<Result<MessageResponse>> = liveData {
-        emit(Result.Loading) // Emit loading state
+        emit(Result.Loading)
         try {
-            // Panggil API untuk register
             val response = apiService.doRegister(name, email, password)
 
             if (response.error) {
-                // Emit error jika respons API menunjukkan error
                 emit(Result.Error(response.message))
             } else {
                 emit(Result.Success(response))
             }
         } catch (e: Exception) {
-            // Emit error jika terjadi exception
             emit(Result.Error(e.localizedMessage ?: "Error occurred during registration"))
         }
     }

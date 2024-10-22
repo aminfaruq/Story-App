@@ -1,59 +1,106 @@
 package com.aminfaruq.storyapp.repository
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.aminfaruq.storyapp.data.api.ApiService
 import com.aminfaruq.storyapp.data.response.story.MessageResponse
 import com.aminfaruq.storyapp.data.response.story.StoryListResponse
 import com.aminfaruq.storyapp.utils.Result
+import com.google.gson.Gson
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.HttpException
+import java.io.File
 
 class StoryRepository private constructor(
     private val apiService: ApiService
 ) {
-    // Fungsi untuk mendapatkan daftar cerita
-    fun getStoryList(size: Int): LiveData<Result<StoryListResponse>> = liveData {
-        emit(Result.Loading) // Emit loading state
+    fun getStoryList(
+        location: Int? = 0
+    ): LiveData<Result<StoryListResponse>> = liveData {
+        emit(Result.Loading)
         try {
-            // Panggil API untuk mendapatkan daftar cerita
-            val response = apiService.getStoryList(size)
+            val response = apiService.getStoryList(location)
 
             if (response.error) {
-                // Emit error jika API mengembalikan error
                 emit(Result.Error(response.message))
             } else {
-                // Emit success jika data berhasil diambil
                 emit(Result.Success(response))
             }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, MessageResponse::class.java)
+            emit(Result.Error(errorResponse.message))
         } catch (e: Exception) {
-            // Emit error jika ada exception
             emit(Result.Error(e.localizedMessage ?: "Error fetching stories"))
         }
     }
 
-    // Fungsi untuk mengunggah gambar
+    suspend fun getStoryListFromApi(location: Int? = 0): StoryListResponse {
+        return try {
+            val response = apiService.getStoryList(location)
+            if (response.error) {
+                throw Exception(response.message)
+            } else {
+                response
+            }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, MessageResponse::class.java)
+            throw Exception(errorResponse.message)
+        } catch (e: Exception) {
+            throw Exception(e.localizedMessage ?: "Error fetching stories")
+        }
+    }
+
+
     fun uploadImage(
-        context: Context,
-        file: MultipartBody.Part,
-        description: RequestBody
+        file: File,
+        description: String
     ): LiveData<Result<MessageResponse>> = liveData {
-        emit(Result.Loading) // Emit loading state
+        emit(Result.Loading)
+        val requestBody = description.toRequestBody("text/plain".toMediaType())
+        val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+        val multipartBody = MultipartBody.Part.createFormData(
+            "photo",
+            file.name,
+            requestImageFile
+        )
         try {
-            // Panggil API untuk mengunggah gambar
-            val response = apiService.doUploadImage(file, description)
+            val response = apiService.doUploadImage(multipartBody, requestBody)
 
             if (response.error) {
-                // Emit error jika API mengembalikan error
                 emit(Result.Error(response.message))
             } else {
-                // Emit success jika upload berhasil
                 emit(Result.Success(response))
             }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, MessageResponse::class.java)
+            emit(Result.Error(errorResponse.message))
         } catch (e: Exception) {
-            // Emit error jika ada exception
             emit(Result.Error(e.localizedMessage ?: "Error uploading image"))
+        }
+    }
+
+    fun getStoryDetail(id: String): LiveData<Result<StoryListResponse>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getStoryDetail(id)
+
+            if (response.error) {
+                emit(Result.Error(response.message))
+            } else {
+                emit(Result.Success(response))
+            }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, MessageResponse::class.java)
+            emit(Result.Error(errorResponse.message))
+        } catch (e: Exception) {
+            emit(Result.Error(e.localizedMessage ?: "Error fetching story detail"))
         }
     }
 

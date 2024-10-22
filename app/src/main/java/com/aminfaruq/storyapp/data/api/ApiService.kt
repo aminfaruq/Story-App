@@ -11,6 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -31,7 +32,7 @@ interface ApiService {
 
     @GET("stories")
     suspend fun getStoryList(
-        @Query("size") size:Int
+        @Query("location") location: Int? = 0
     ): StoryListResponse
 
     @Multipart
@@ -39,5 +40,12 @@ interface ApiService {
     suspend fun doUploadImage(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: Double? = 0.0,
+        @Part("lon") lon: Double? = 0.0,
     ): MessageResponse
+
+    @GET("stories/{id}")
+    suspend fun getStoryDetail(
+        @Path("id") storyId: String
+    ): StoryListResponse
 }

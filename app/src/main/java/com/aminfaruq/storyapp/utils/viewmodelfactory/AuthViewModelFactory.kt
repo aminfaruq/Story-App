@@ -1,9 +1,7 @@
 package com.aminfaruq.storyapp.utils.viewmodelfactory
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.aminfaruq.storyapp.di.Injection
 import com.aminfaruq.storyapp.repository.AuthRepository
 import com.aminfaruq.storyapp.ui.auth.login.LoginViewModel
 import com.aminfaruq.storyapp.ui.auth.register.RegisterViewModel

@@ -9,7 +9,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.aminfaruq.storyapp.R
 import com.aminfaruq.storyapp.ui.auth.login.LoginActivity
-import com.aminfaruq.storyapp.ui.story.StoryActivity
+import com.aminfaruq.storyapp.ui.home.HomeActivity
 import com.aminfaruq.storyapp.utils.SharedPreferencesHelper
 
 @SuppressLint("CustomSplashScreen")
@@ -30,12 +30,12 @@ class SplashScreenActivity : AppCompatActivity() {
             if (token.isNullOrEmpty()) {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             } else {
-                val intent = Intent(this, StoryActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
+                finish()
             }
-            finish()
         }, 3000)
-
     }
 }

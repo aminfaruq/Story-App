@@ -4,24 +4,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.aminfaruq.storyapp.databinding.ActivityLoginBinding
 import com.aminfaruq.storyapp.di.Injection
 import com.aminfaruq.storyapp.ui.auth.register.RegisterActivity
-import com.aminfaruq.storyapp.ui.story.StoryActivity
+import com.aminfaruq.storyapp.ui.home.HomeActivity
 import com.aminfaruq.storyapp.utils.Result
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by viewModels {
+        Injection.provideAuthViewModelFactory(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val authViewModelFactory = Injection.provideAuthViewModelFactory(this)
-        viewModel = ViewModelProvider(this, authViewModelFactory)[LoginViewModel::class.java]
+        supportActionBar?.hide()
 
         binding.loadingView.visibility = View.GONE
         binding.buttonLogin.setOnClickListener {
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
                     is Result.Success -> {
                         binding.loadingView.visibility = View.GONE
-                        val intent = Intent(this, StoryActivity::class.java)
+                        val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                         finish()
                     }

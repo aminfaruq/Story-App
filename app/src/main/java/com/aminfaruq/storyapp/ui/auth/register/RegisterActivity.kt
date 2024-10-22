@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.aminfaruq.storyapp.databinding.ActivityRegisterBinding
 import com.aminfaruq.storyapp.di.Injection
 import com.aminfaruq.storyapp.ui.auth.login.LoginActivity
@@ -13,24 +13,22 @@ import com.aminfaruq.storyapp.utils.Result
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var viewModel: RegisterViewModel
+    private val viewModel: RegisterViewModel by viewModels {
+        Injection.provideAuthViewModelFactory(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
-        val authViewModelFactory = Injection.provideAuthViewModelFactory(this)
-
-        // Membuat instance LoginViewModel
-        viewModel = ViewModelProvider(this, authViewModelFactory)[RegisterViewModel::class.java]
         binding.loadingView.visibility = View.GONE
         binding.buttonRegister.setOnClickListener {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
 
-            // Validasi dan proses registrasi
             viewModel.register(name, email, password).observe(this) { result ->
                 when (result) {
                     is Result.Loading -> {

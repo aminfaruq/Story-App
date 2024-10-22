@@ -7,6 +7,9 @@ data class StoryListResponse(
     @field:SerializedName("listStory")
     val listStory: List<StoryItemResponse>,
 
+    @field:SerializedName("story")
+    val story: StoryItemResponse,
+
     @field:SerializedName("error")
     val error: Boolean,
 

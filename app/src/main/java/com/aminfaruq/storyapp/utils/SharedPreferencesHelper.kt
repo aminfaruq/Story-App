@@ -13,7 +13,6 @@ class SharedPreferencesHelper(context: Context) {
 
     }
 
-    // Simpan token
     fun saveToken(token: String) {
         sharedPreferences.edit().putString(TOKEN_KEY, token).apply()
     }
@@ -22,15 +21,10 @@ class SharedPreferencesHelper(context: Context) {
         sharedPreferences.edit().putString(NAME_KEY, name).apply()
     }
 
-    // Ambil token
     fun getToken(): String? {
         return sharedPreferences.getString(TOKEN_KEY, null)
     }
 
-    fun getName(): String? {
-        return sharedPreferences.getString(NAME_KEY, null)
-    }
-    // Hapus token
     fun clearToken() {
         sharedPreferences.edit().remove(TOKEN_KEY).apply()
         sharedPreferences.edit().remove(NAME_KEY).apply()
