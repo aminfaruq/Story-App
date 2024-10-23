@@ -10,10 +10,11 @@
         android:loopViews="true" />
 
     <TextView
+        android:fontFamily="@font/poppins_regular"
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No stories available"
+        android:text="@string/no_stories_available"
         android:visibility="gone" />
 </FrameLayout>

@@ -1,25 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Story App</string>
-    <string name="const_text_seconds_ago">seconds ago</string>
-    <string name="const_text_minutes_ago">minutes ago</string>
-    <string name="const_text_hours_ago">hours ago</string>
-    <string name="const_text_days_ago">days ago</string>
-    <string name="UI_validation_empty_story_description">Field description must be filled</string>
-    <string name="UI_validation_empty_email_password">Field Email and Password must be filled</string>
-    <string name="UI_validation_invalid_email">Email format is invalid</string>
-    <string name="UI_validation_empty_email_password_name">Field Name, Email and Password must be filled</string>
-    <string name="UI_validation_password_rules">Password must contain at least 6 characters</string>
-    <string name="UI_info_successful_register_user">New user registration is successful, please login using the registered email and password</string>
+    <string name="app_name">Aplikasi Cerita</string>
+    <string name="const_text_seconds_ago">detik yang lalu</string>
+    <string name="const_text_minutes_ago">menit yang lalu</string>
+    <string name="const_text_hours_ago">jam yang lalu</string>
+    <string name="const_text_days_ago">hari yang lalu</string>
+    <string name="UI_validation_empty_story_description">Kolom deskripsi harus diisi</string>
+    <string name="UI_validation_empty_email_password">Kolom Email dan Password harus diisi</string>
+    <string name="UI_validation_invalid_email">Format email tidak valid</string>
+    <string name="UI_validation_empty_email_password_name">Kolom Nama, Email, dan Password harus diisi</string>
+    <string name="UI_validation_password_rules">Password harus mengandung minimal 6 karakter</string>
+    <string name="UI_info_successful_register_user">Pendaftaran pengguna baru berhasil, silakan login menggunakan email dan password yang terdaftar</string>
     <string name="UI_error_permission_denied">
-        Permision Denied \n\n Please do the following steps : \n
-        1. Open the profile menu and open the App Permissions \n
-        2. Select permission on app info \n
-        3. Select permission for camera \n
-        4. Select the option allow only while using the app
+        Izin Ditolak \n\n Harap lakukan langkah-langkah berikut: \n
+        1. Buka menu profil dan buka Izin Aplikasi \n
+        2. Pilih izin di info aplikasi \n
+        3. Pilih izin untuk kamera \n
+        4. Pilih opsi izinkan hanya saat menggunakan aplikasi
     </string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
+    <string name="appwidget_text">CONTOH</string>
+    <string name="add_widget">Tambahkan widget</string>
+    <string name="app_widget_description">Ini adalah deskripsi widget aplikasi</string>
+    <string name="create_an_account">Buat Akun</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="already_have_an_account">Sudah punya akun?</string>
+    <string name="login">Masuk</string>
+    <string name="welcome_back">Selamat Datang Kembali</string>
+    <string name="register">Daftar</string>
+    <string name="don_t_have_an_account">Belum punya akun?</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="description">Deskripsi</string>
+    <string name="upload">Unggah</string>
+    <string name="failed_camera">Gagal memunculkan kamera.</string>
+    <string name="failed_picture">Gagal mengambil gambar.</string>
+    <string name="rules_password">Password tidak boleh kurang dari 8 karakter</string>
+    <string name="rules_email">Format email salah</string>
+    <string name="failed_info">Gagal menampilkan informasi.</string>
+    <string name="exit">keluar</string>
+    <string name="no_stories_available">Tidak ada cerita tersedia</string>
+    <string name="detail_activity_title">Halaman Detail</string>
+    <string name="capture_button">Tombol Ambil</string>
+    <string name="switch_camera">Beralih Kamera</string>
+    <string name="photo_detail">Detail Foto</string>
+    <string name="add_story">Tambah Cerita</string>
+    <string name="preview_image">Pranala Gambar</string>
 </resources>

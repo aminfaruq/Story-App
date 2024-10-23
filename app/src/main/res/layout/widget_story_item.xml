@@ -6,6 +6,6 @@
     android:layout_height="256dp"
     android:adjustViewBounds="true"
     android:scaleType="centerCrop"
-    android:contentDescription="Lah"
+    android:contentDescription="@string/preview_image"
     tools:src="@tools:sample/avatars" />
 

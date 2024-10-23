@@ -12,7 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
-internal class StackRemoteViewsFactory(private val context: Context) : RemoteViewsService.RemoteViewsFactory {
+internal class StackRemoteViewsFactory(private val context: Context) :
+    RemoteViewsService.RemoteViewsFactory {
     private val storiesBitmap = arrayListOf<Bitmap>()
     private val stories = arrayListOf<StoryItemResponse>()
 
@@ -43,6 +44,7 @@ internal class StackRemoteViewsFactory(private val context: Context) : RemoteVie
             e.printStackTrace()
         }
     }
+
     override fun onDestroy() {}
 
     override fun getCount(): Int = stories.size

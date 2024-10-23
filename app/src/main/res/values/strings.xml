@@ -11,15 +11,40 @@
     <string name="UI_validation_password_rules">Password must contain at least 6 characters</string>
     <string name="UI_info_successful_register_user">New user registration is successful, please login using the registered email and password</string>
     <string name="UI_error_permission_denied">
-        Permision Denied \n\n Please do the following steps : \n
+        Permission Denied \n\n Please do the following steps: \n
         1. Open the profile menu and open the App Permissions \n
         2. Select permission on app info \n
         3. Select permission for camera \n
         4. Select the option allow only while using the app
     </string>
-    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="empty_image_warning">Please insert an image file first.</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
-
+    <string name="create_an_account">Create an Account</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="register">Register</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="description">Description</string>
+    <string name="upload">Upload</string>
+    <string name="failed_camera">Failed to open the camera.</string>
+    <string name="failed_picture">Failed to take a picture.</string>
+    <string name="rules_password">Password must be at least 8 characters long.</string>
+    <string name="rules_email">Invalid email format.</string>
+    <string name="failed_info">Failed to show info.</string>
+    <string name="exit">exit</string>
+    <string name="no_stories_available">No stories available</string>
+    <string name="detail_activity_title">Detail Page</string>
+    <string name="capture_button">Capture Button</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="photo_detail">Photo detail</string>
+    <string name="add_story">Add Story</string>
+    <string name="preview_image">Preview Image</string>
 </resources>

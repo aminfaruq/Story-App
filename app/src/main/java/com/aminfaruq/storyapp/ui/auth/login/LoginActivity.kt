@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
                     is Result.Error -> {
                         binding.loadingView.visibility = View.GONE
-                        Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

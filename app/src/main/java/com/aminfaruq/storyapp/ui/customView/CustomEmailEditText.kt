@@ -20,13 +20,11 @@ class CustomEmailEditText @JvmOverloads constructor(
 
         addTextChangedListener(object : TextWatcher {
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 error = if (!isValidEmail(s.toString())) {
-                    "Format email salah"
+                    context.getString(R.string.rules_email)
                 } else {
                     null
                 }

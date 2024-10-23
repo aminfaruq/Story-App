@@ -13,37 +13,39 @@ class AuthRepository private constructor(
     private val apiService: ApiService,
 ) {
 
-    fun login(email: String, password: String, context: Context): LiveData<Result<AuthResponse>> = liveData {
-        val sharedPreferencesHelper = SharedPreferencesHelper(context)
-        emit(Result.Loading)
-        try {
-            val response = apiService.doLogin(email, password)
-            if (response.error) {
-                emit(Result.Error(response.message))
-            } else {
-                sharedPreferencesHelper.saveToken(response.loginResult.token)
-                sharedPreferencesHelper.saveName(response.loginResult.name)
-                emit(Result.Success(response))
+    fun login(email: String, password: String, context: Context): LiveData<Result<AuthResponse>> =
+        liveData {
+            val sharedPreferencesHelper = SharedPreferencesHelper(context)
+            emit(Result.Loading)
+            try {
+                val response = apiService.doLogin(email, password)
+                if (response.error) {
+                    emit(Result.Error(response.message))
+                } else {
+                    sharedPreferencesHelper.saveToken(response.loginResult.token)
+                    sharedPreferencesHelper.saveName(response.loginResult.name)
+                    emit(Result.Success(response))
+                }
+            } catch (e: Exception) {
+                emit(Result.Error(e.localizedMessage ?: "Error occurred during login"))
             }
-        } catch (e: Exception) {
-            emit(Result.Error(e.localizedMessage ?: "Error occurred during login"))
         }
-    }
 
-    fun register(name: String, email: String, password: String): LiveData<Result<MessageResponse>> = liveData {
-        emit(Result.Loading)
-        try {
-            val response = apiService.doRegister(name, email, password)
+    fun register(name: String, email: String, password: String): LiveData<Result<MessageResponse>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val response = apiService.doRegister(name, email, password)
 
-            if (response.error) {
-                emit(Result.Error(response.message))
-            } else {
-                emit(Result.Success(response))
+                if (response.error) {
+                    emit(Result.Error(response.message))
+                } else {
+                    emit(Result.Success(response))
+                }
+            } catch (e: Exception) {
+                emit(Result.Error(e.localizedMessage ?: "Error occurred during registration"))
             }
-        } catch (e: Exception) {
-            emit(Result.Error(e.localizedMessage ?: "Error occurred during registration"))
         }
-    }
 
     companion object {
         @Volatile

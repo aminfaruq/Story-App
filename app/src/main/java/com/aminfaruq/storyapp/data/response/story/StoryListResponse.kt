@@ -16,3 +16,4 @@ data class StoryListResponse(
     @field:SerializedName("message")
     val message: String
 )
+

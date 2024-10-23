@@ -3,12 +3,14 @@ package com.aminfaruq.storyapp.ui.home
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aminfaruq.storyapp.data.response.story.StoryItemResponse
@@ -37,19 +39,28 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
+
+        val toolbar: Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_translate_24)
+        toolbar.setNavigationOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+
         viewModel.requestStoryList()
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.requestStoryList()
         }
 
-        uploadLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                viewModel.requestStoryList()
+        uploadLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    viewModel.requestStoryList()
+                }
             }
-        }
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
@@ -94,6 +105,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
                 finish()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

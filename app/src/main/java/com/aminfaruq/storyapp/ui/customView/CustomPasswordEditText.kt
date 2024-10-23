@@ -18,13 +18,11 @@ class CustomPasswordEditText @JvmOverloads constructor(
         background = ContextCompat.getDrawable(context, R.drawable.edit_text_background)
 
         addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 error = if (s.toString().length < 8) {
-                    "Password tidak boleh kurang dari 8 karakter"
+                    context.getString(R.string.rules_password)
                 } else {
                     null
                 }

@@ -43,7 +43,10 @@ class StoryAppWidget : AppWidgetProvider() {
 
         val detailIntent = Intent(context, DetailActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
-            context, 0, detailIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            context,
+            0,
+            detailIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         views.setPendingIntentTemplate(R.id.stackView, pendingIntent)
 
@@ -57,7 +60,10 @@ class StoryAppWidget : AppWidgetProvider() {
         fun notifyDataSetChanged(context: Context) {
             val manager = AppWidgetManager.getInstance(context)
             val componentName = ComponentName(context, StoryAppWidget::class.java)
-            manager.notifyAppWidgetViewDataChanged(manager.getAppWidgetIds(componentName), R.id.stackView)
+            manager.notifyAppWidgetViewDataChanged(
+                manager.getAppWidgetIds(componentName),
+                R.id.stackView
+            )
         }
     }
 }

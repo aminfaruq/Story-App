@@ -29,6 +29,7 @@ class HomeViewModel(private val storyRepository: StoryRepository) : ViewModel() 
                     _listStory.value = result.data
                     _isError.value = false
                 }
+
                 is Result.Error -> {
                     _isLoading.value = false
                     _isError.value = true

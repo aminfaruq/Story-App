@@ -16,43 +16,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <!-- Logo atau judul aplikasi -->
         <TextView
+            android:fontFamily="@font/poppins_medium"
             android:id="@+id/app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
-            android:text="Welcome Back"
+            android:text="@string/welcome_back"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- Input untuk email -->
         <com.aminfaruq.storyapp.ui.customView.CustomEmailEditText
+            android:fontFamily="@font/poppins_medium"
             android:id="@+id/edit_text_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_below="@id/app_title"
             android:layout_marginTop="150dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="12dp" />
 
-        <!-- Input untuk password -->
         <com.aminfaruq.storyapp.ui.customView.CustomPasswordEditText
+            android:fontFamily="@font/poppins_medium"
             android:id="@+id/edit_text_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_below="@id/edit_text_email"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_background"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp" />
 
-        <!-- Button untuk login -->
         <Button
+            android:fontFamily="@font/poppins_medium"
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,23 +60,23 @@
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/black"
             android:padding="12dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textColor="@android:color/white"
             android:transitionName="password" />
 
-        <!-- Teks untuk registrasi -->
         <TextView
+            android:fontFamily="@font/poppins_regular"
             android:id="@+id/text_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button_login"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:text="Don't have an account?"
+            android:text="@string/don_t_have_an_account"
             android:textColor="@android:color/black" />
 
-        <!-- Button untuk pindah ke fragment register -->
         <Button
+            android:fontFamily="@font/poppins_medium"
             android:id="@+id/button_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="@android:color/holo_blue_dark" />
     </RelativeLayout>
 
