@@ -1,4 +1,4 @@
-package com.aminfaruq.storyapp.ui.home
+package com.aminfaruq.storyapp.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -18,7 +18,8 @@ class StoryListAdapter(
     private val onItemClickListener: OnItemClickListener
 ) : PagingDataAdapter<StoryItemResponse, StoryListAdapter.StoryViewHolder>(DIFF_CALLBACK) {
 
-    class StoryViewHolder(private val binding: StoryListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class StoryViewHolder(private val binding: StoryListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StoryItemResponse) {
             binding.apply {
                 title.text = item.name
@@ -49,11 +50,17 @@ class StoryListAdapter(
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryItemResponse>() {
-            override fun areItemsTheSame(oldItem: StoryItemResponse, newItem: StoryItemResponse): Boolean {
+            override fun areItemsTheSame(
+                oldItem: StoryItemResponse,
+                newItem: StoryItemResponse
+            ): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: StoryItemResponse, newItem: StoryItemResponse): Boolean {
+            override fun areContentsTheSame(
+                oldItem: StoryItemResponse,
+                newItem: StoryItemResponse
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
         }

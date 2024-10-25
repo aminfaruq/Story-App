@@ -16,10 +16,12 @@ class AuthViewModelFactory(
                 @Suppress("UNCHECKED_CAST")
                 RegisterViewModel(authRepository) as T
             }
+
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
                 LoginViewModel(authRepository) as T
             }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     }

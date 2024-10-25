@@ -11,7 +11,6 @@ import androidx.core.net.toUri
 import com.aminfaruq.storyapp.R
 import com.aminfaruq.storyapp.ui.detail.DetailActivity
 
-
 /**
  * Implementation of App Widget functionality.
  */

@@ -10,7 +10,6 @@ class SharedPreferencesHelper(context: Context) {
     companion object {
         private const val TOKEN_KEY = "TOKEN_KEY"
         private const val NAME_KEY = "NAME_KEY"
-
     }
 
     fun saveToken(token: String) {

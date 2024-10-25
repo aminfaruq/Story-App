@@ -12,7 +12,6 @@ import com.aminfaruq.storyapp.ui.auth.register.RegisterActivity
 import com.aminfaruq.storyapp.ui.home.HomeActivity
 import com.aminfaruq.storyapp.utils.Result
 
-@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels {

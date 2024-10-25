@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import com.aminfaruq.storyapp.R
 import com.aminfaruq.storyapp.data.response.story.StoryItemResponse
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,7 +23,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MapStyleOptions
 
-@Suppress("DEPRECATION")
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
@@ -87,14 +85,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)
         supportActionBar?.title = getString(R.string.maps)
         toolbar.setNavigationOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
                 true
             }
 
@@ -110,6 +108,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     addMarkers(result.data.listStory)
                     adjustCameraToMarkers()
                 }
+
                 is Result.Error -> {
                     Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
                 }

@@ -24,6 +24,8 @@ import com.aminfaruq.storyapp.di.Injection
 import com.aminfaruq.storyapp.ui.auth.login.LoginActivity
 import com.aminfaruq.storyapp.ui.detail.DetailActivity
 import com.aminfaruq.storyapp.ui.home.adapter.LoadingStateAdapter
+import com.aminfaruq.storyapp.ui.home.adapter.OnItemClickListener
+import com.aminfaruq.storyapp.ui.home.adapter.StoryListAdapter
 import com.aminfaruq.storyapp.ui.maps.MapsActivity
 import com.aminfaruq.storyapp.ui.upload.UploadActivity
 import com.aminfaruq.storyapp.utils.SharedPreferencesHelper
@@ -97,12 +99,13 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun setupUploadLauncher() {
-        uploadLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                adapter.refresh()
-                binding.recyclerView.scrollToPosition(0)
+        uploadLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    adapter.refresh()
+                    binding.recyclerView.scrollToPosition(0)
+                }
             }
-        }
     }
 
     private fun setupToolbar() {
@@ -131,11 +134,13 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
                 finish()
                 true
             }
+
             R.id.action_maps -> {
                 val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -6,7 +6,8 @@ import androidx.paging.PagingState
 import com.aminfaruq.storyapp.data.api.ApiService
 import com.aminfaruq.storyapp.data.response.story.StoryItemResponse
 
-class StoryPagingSource(private val apiService: ApiService) : PagingSource<Int, StoryItemResponse>()  {
+class StoryPagingSource(private val apiService: ApiService) :
+    PagingSource<Int, StoryItemResponse>() {
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
     }
@@ -23,7 +24,10 @@ class StoryPagingSource(private val apiService: ApiService) : PagingSource<Int, 
             val position = params.key ?: INITIAL_PAGE_INDEX
             val responseData = apiService.getStoryList(page = position, size = params.loadSize)
 
-            Log.d("StoryPagingSource", "Loaded page $position with ${responseData.listStory.size} items")
+            Log.d(
+                "StoryPagingSource",
+                "Loaded page $position with ${responseData.listStory.size} items"
+            )
 
             LoadResult.Page(
                 data = responseData.listStory,

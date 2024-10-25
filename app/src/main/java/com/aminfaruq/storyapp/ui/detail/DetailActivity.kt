@@ -12,7 +12,6 @@ import com.aminfaruq.storyapp.di.Injection
 import com.aminfaruq.storyapp.utils.Result
 import com.bumptech.glide.Glide
 
-@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModels {
@@ -28,7 +27,6 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             title = getString(R.string.detail_activity_title)
-            titleColor = resources.getColor(android.R.color.white, null)
         }
 
         val id = intent.getStringExtra(EXTRA_ID)
@@ -60,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
                 true
             }
 

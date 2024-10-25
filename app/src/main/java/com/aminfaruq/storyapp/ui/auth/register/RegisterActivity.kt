@@ -28,26 +28,7 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
-
-            viewModel.register(name, email, password).observe(this) { result ->
-                when (result) {
-                    is Result.Loading -> {
-                        binding.loadingView.visibility = View.VISIBLE
-                    }
-
-                    is Result.Success -> {
-                        binding.loadingView.visibility = View.GONE
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-
-                    is Result.Error -> {
-                        binding.loadingView.visibility = View.GONE
-                        Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            doRegister(name, email, password)
         }
 
         binding.buttonLogin.setOnClickListener {
@@ -56,5 +37,27 @@ class RegisterActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun doRegister(name: String, email: String, password: String) {
+        viewModel.register(name, email, password).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.loadingView.visibility = View.VISIBLE
+                }
+
+                is Result.Success -> {
+                    binding.loadingView.visibility = View.GONE
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+                is Result.Error -> {
+                    binding.loadingView.visibility = View.GONE
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
