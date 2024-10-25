@@ -32,7 +32,9 @@ interface ApiService {
 
     @GET("stories")
     suspend fun getStoryList(
-        @Query("location") location: Int? = 0
+        @Query("location") location: Int? = 0,
+        @Query("page") page: Int? = null,
+        @Query("size") size: Int? = null
     ): StoryListResponse
 
     @Multipart

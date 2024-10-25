@@ -2,8 +2,13 @@ package com.aminfaruq.storyapp.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.aminfaruq.storyapp.data.api.ApiService
 import com.aminfaruq.storyapp.data.response.story.MessageResponse
+import com.aminfaruq.storyapp.data.response.story.StoryItemResponse
 import com.aminfaruq.storyapp.data.response.story.StoryListResponse
 import com.aminfaruq.storyapp.utils.Result
 import com.google.gson.Gson
@@ -17,8 +22,8 @@ import java.io.File
 class StoryRepository private constructor(
     private val apiService: ApiService
 ) {
-    fun getStoryList(
-        location: Int? = 0
+    fun getStoryLocation(
+        location: Int? = 1
     ): LiveData<Result<StoryListResponse>> = liveData {
         emit(Result.Loading)
         try {
@@ -36,6 +41,18 @@ class StoryRepository private constructor(
         } catch (e: Exception) {
             emit(Result.Error(e.localizedMessage ?: "Error fetching stories"))
         }
+    }
+
+    fun getStoryList(): LiveData<PagingData<StoryItemResponse>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                StoryPagingSource(apiService)
+            }
+        ).liveData
     }
 
     suspend fun getStoryListFromApi(location: Int? = 0): StoryListResponse {
@@ -113,4 +130,5 @@ class StoryRepository private constructor(
                 instance ?: StoryRepository(apiService).also { instance = it }
             }
     }
+
 }

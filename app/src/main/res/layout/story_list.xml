@@ -16,9 +16,9 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:contentDescription="@string/preview_image"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

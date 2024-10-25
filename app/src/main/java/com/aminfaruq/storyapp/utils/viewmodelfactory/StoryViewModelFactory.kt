@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.aminfaruq.storyapp.repository.StoryRepository
 import com.aminfaruq.storyapp.ui.detail.DetailViewModel
 import com.aminfaruq.storyapp.ui.home.HomeViewModel
+import com.aminfaruq.storyapp.ui.maps.MapsViewModel
 import com.aminfaruq.storyapp.ui.upload.UploadViewModel
 
 class StoryViewModelFactory(
@@ -26,6 +27,12 @@ class StoryViewModelFactory(
             @Suppress("UNCHECKED_CAST")
             return DetailViewModel(storyRepository) as T
         }
+
+        if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MapsViewModel(storyRepository) as T
+        }
+
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 }

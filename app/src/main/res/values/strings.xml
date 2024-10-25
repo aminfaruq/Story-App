@@ -47,4 +47,7 @@
     <string name="photo_detail">Photo detail</string>
     <string name="add_story">Add Story</string>
     <string name="preview_image">Preview Image</string>
+    <string name="retry">Try Again</string>
+    <string name="maps">Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

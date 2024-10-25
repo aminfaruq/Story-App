@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class StoryItemResponse(
 
+    @field:SerializedName("id")
+    val id: String,
+
     @field:SerializedName("photoUrl")
     val photoUrl: String,
 
@@ -17,11 +20,8 @@ data class StoryItemResponse(
     val description: String,
 
     @field:SerializedName("lon")
-    val lon: Any,
-
-    @field:SerializedName("id")
-    val id: String,
+    val lon: Double?,
 
     @field:SerializedName("lat")
-    val lat: Any
+    val lat: Double?
 )
