@@ -71,8 +71,7 @@ class StoryRepository private constructor(
             throw Exception(e.localizedMessage ?: "Error fetching stories")
         }
     }
-
-
+    
     fun uploadImage(
         file: File,
         description: String
